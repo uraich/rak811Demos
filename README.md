@@ -1,6 +1,6 @@
 # rak811Demos
 ## Introduction
-This repository contains simple examples on how the STM32L151CB-A processor implemented in the Rak811 chip. This chip 
+This repository contains simple examples on how to program the STM32L151CB-A processor implemented on the Rak811 chip. This chip 
 contains the processor and an SX1276 LoRa transceiver.
 The programs use peripherals either implemented on the processor chip itself or on the Rak811 Tracker board. All programs have been developed with STM32CubeMX which generates the peripheral initialization code. This code is included into Eclipse with the Ac6STM32 plugin. Once the program has been successfully built it is flashed into the Rak811 processor using an ST-Link V2 debugging probe. In circuit debugging is accomplished using this probe with the help of openocd and gdb.
 ## The Blink Demo (Rak811Blink)
