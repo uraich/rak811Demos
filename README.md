@@ -1,7 +1,7 @@
 # rak811Demos
 ## Introduction
 This repository contains simple examples on how to program the STM32L151CB-A processor implemented on the Rak811 chip. This chip 
-contains the processor and an SX1276 LoRa transceiver.
+contains the processor and an SX1276 LoRa transceiver. Rak Wireless has released a reference program for the Rak811 tracker board. This program however is quite huge and not very easy to understand for a newcomer. In this repository I try to provide small demo programs showing how to interact with the individual components of the tracker board.
 The programs use peripherals either implemented on the processor chip itself or on the Rak811 Tracker board. All programs have been developed with STM32CubeMX which generates the peripheral initialization code. This code is included into Eclipse with the Ac6STM32 plugin. STM32CubeMX generated code for the ST HAL (Hardware Abstraction Layer) library whose functions are subsequently used in the programs. Once the program has been successfully built it is flashed into the Rak811 processor using an ST-Link V2 debugging probe. In circuit debugging is accomplished using this probe with the help of openocd and gdb. All this can be done from within the Eclipse IDE.
 ## The Blink Demo (Rak811Blink)
 The Rak811 tracker board has 2 user programmable LEDs connected to the GPIO port PA12 (LED1) and PB4 (LED2) The Blink program uses a 2 bit binary counter to drive those LEDs. The HAL_Delay function determines the frequency of blinking.
@@ -17,7 +17,9 @@ The Rak811 tracker has a MEMS digital motion sensor on board. This chip is inter
 In this program I try to read the LIS3-DH chip and print motion information. This needs some polishing.
 ## The Real Time Clock (Ral811RTC)
 A demo program for the RTC. At the start of the program the user is asked to enter the current date and time (no line editing yet!). These data are sent to the RTC to set up date and time. In the main loop the RTC is read out every 5 s and date and time are printed.
+## Flash writing and reading
+The new version of thee Rak Wireless reference program uses at-commands to configure the LoRa transceiver. The settings are saved in a page on the STM32L151CB-A flash. This program demonstrates how to erase, write and re-read a page in flash.
 ## The SX1276 LoRa transceiver (Rak811sx1276)
 This program is intended to demonstrate how to send data from the Rak811 tracker to The Things Network (TTN). Dummy data is used.
 For the moment this program is under construction and does not work yet.
->>>>>>> 20e93f459a12f5889af0dfd412c4b66851e3c6d6
+
