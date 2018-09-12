@@ -17,7 +17,7 @@ The Rak811 tracker has a MEMS digital motion sensor on board. This chip is inter
 In this program I try to read the LIS3-DH chip and print motion information. This needs some polishing.
 ## The Real Time Clock (Ral811RTC)
 A demo program for the RTC. At the start of the program the user is asked to enter the current date and time (no line editing yet!). These data are sent to the RTC to set up date and time. In the main loop the RTC is read out every 5 s and date and time are printed.
-## Flash writing and reading
+## Flash writing and reading (Rak811Flash)
 The new version of thee Rak Wireless reference program uses at-commands to configure the LoRa transceiver. The settings are saved in a page on the STM32L151CB-A flash. This program demonstrates how to erase, write and re-read a page in flash.
 ## The SX1276 LoRa transceiver (Rak811sx1276)
 This program is intended to demonstrate how to send data from the Rak811 tracker to The Things Network (TTN). Dummy data is used.
