@@ -154,7 +154,8 @@ int main(void)
 	uint8_t inBuf[BUFLEN];
 	uint32_t tmp,flash_status;
 	FLASH_OBProgramInitTypeDef optionBytes;
-
+	uint32_t flashAddress;
+	extern uint32_t _hello;
 	flash_status = FLASH->SR;
 
   /* USER CODE END 1 */
@@ -212,30 +213,32 @@ int main(void)
    * clear out the page buffer, write "Hello World!" into it and print it
    */
   memset(outBuf,0,BUFLEN);
-  strcpy((char *)outBuf,"Hello World!\r\n");
+  strcpy((char *)outBuf,"Hello from Flash!\r\n");
   printf("out buffer: \r\n");
   printBuf(outBuf,(uint16_t) BUFLEN);
   /*
    * read the current data from the flash page and print it
    */
-  read_flash_data(FLASH_USER_ADDR, inBuf, (uint16_t) BUFLEN );
+  flashAddress = (uint32_t)&_hello;
+  printf("Flash address is 0x%08lx\r\n",flashAddress);
+  read_flash_data(flashAddress, inBuf, (uint16_t) BUFLEN );
   printf("Beginning of flash buffer: %s\r\n",inBuf);
   printBuf(inBuf,(uint16_t) BUFLEN);
   /*
    * erase the page and print the values after erase
    */
-  erase_page(FLASH_USER_ADDR);
+  erase_page(flashAddress);
   printf("Buffer after erase: \r\n");
-  read_flash_data(FLASH_USER_ADDR, inBuf, (uint16_t) BUFLEN );
+  read_flash_data(flashAddress, inBuf, (uint16_t) BUFLEN );
   printBuf(inBuf,(uint16_t) BUFLEN);
   /*
    * write the flash with the previously prepared output buffer
    */
-  write_flash_data(FLASH_USER_ADDR, outBuf, (uint16_t) BUFLEN );
+  write_flash_data(flashAddress, outBuf, (uint16_t) BUFLEN );
   /*
    * read back the flash page and print its contents to check if writing was successful
    */
-  read_flash_data(FLASH_USER_ADDR, inBuf, (uint16_t) BUFLEN );
+  read_flash_data(flashAddress, inBuf, (uint16_t) BUFLEN );
   printf("Flash after write: \r\n");
   printBuf(inBuf,(uint16_t) BUFLEN);
 
